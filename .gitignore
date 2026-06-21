@@ -6,3 +6,5 @@ venv/
 .venv/
 *.csv
 *.log
+results/
+garak/results/

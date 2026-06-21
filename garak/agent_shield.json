@@ -1,0 +1,20 @@
+{
+  "rest": {
+    "RestGenerator": {
+      "name": "agent-shield",
+      "uri": "https://agent-shield-chbxh2hkhxgucgax.eastasia-01.azurewebsites.net/v1/check",
+      "method": "post",
+      "key_env_var": "AGENT_STRIKE_INTERNAL_KEY",
+      "headers": {
+        "X-API-Key": "$KEY",
+        "Content-Type": "application/json"
+      },
+      "req_template_json_object": { "prompt": "$INPUT" },
+      "response_json": true,
+      "response_json_field": "verdict",
+      "ratelimit_codes": [429],
+      "request_timeout": 90,
+      "max_requests_per_minute": 30
+    }
+  }
+}
