@@ -31,7 +31,7 @@ def fire(prompt):
 print("Downloading alpaca from HF...")
 url = "https://huggingface.co/datasets/tatsu-lab/alpaca/resolve/main/data/train-00000-of-00001-a09b74b3ef9c3b56.parquet"
 r = requests.get(url, timeout=60)
-open("/tmp/alpaca.parquet", "wb").write(r.content)
+open("/mnt/d/projects/prompt-wall/agent-strike/data/alpaca.parquet", "wb").write(r.content)
 print("Download done")
 
 import struct, io
@@ -40,7 +40,7 @@ import struct, io
 import subprocess
 subprocess.run(["pip", "install", "pandas", "pyarrow", "-q"])
 import pandas as pd
-df = pd.read_parquet("/tmp/alpaca.parquet")
+df = pd.read_parquet("/mnt/d/projects/prompt-wall/agent-strike/data/alpaca.parquet")
 prompts = df["instruction"].dropna().tolist()
 prompts = [p.strip() for p in prompts if p.strip()][:TARGET]
 print(f"Loaded {len(prompts)} prompts")
