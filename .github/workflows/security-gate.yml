@@ -1,34 +1,44 @@
-name: Security Gate
-
+name: Agent Strike Security Gate
 on:
   push:
-    branches: ["main", "master"]
+    branches: [ main ]
   pull_request:
-    branches: ["main", "master"]
-
+    branches: [ main ]
 jobs:
   security-gate:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 1
+          persist-credentials: false
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
-          python-version: "3.11"
+          python-version: '3.11'
+          cache: 'pip'
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pytest bandit pip-audit
+          pip install -r requirements.txt
 
-      - name: Bandit scan
+      - name: Bandit Scan
         run: bandit -r attacks/ core/ executor/ reporter/ scripts/ config.py main.py -ll
 
-      - name: Run tests
-        run: python3 -m pytest tests/ -v --tb=short
+      - name: pip-audit
+        run: pip-audit
+
+      - name: Run Tests
         env:
           AGENT_STRIKE_INTERNAL_KEY: ${{ secrets.AGENT_STRIKE_INTERNAL_KEY }}
           AGENT_SHIELD_URL: ${{ secrets.AGENT_SHIELD_URL }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
           AZURE_TABLE_NAME: agentstrikeresults
+        run: python -m pytest tests/ -v --tb=short
