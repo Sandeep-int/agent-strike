@@ -1,0 +1,6 @@
+crewai==1.14.4
+crewai-core==1.14.7
+litellm==1.72.6
+openai>=1.0.0
+python-dotenv>=1.0.0
+requests>=2.31.0
