@@ -199,7 +199,7 @@ retrain — humans review the retrain decision, not generate the data for it.
 
 ## Security
 
-- No production keys in this repo
+- No production keys in this repo.
 - All secrets via environment variables only
 - Internal key auth required — Strike traffic never mixes with public Shield metrics
 - See [SECURITY.md](SECURITY.md) for vulnerability reporting
