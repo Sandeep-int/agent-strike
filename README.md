@@ -6,7 +6,7 @@
 
 **Autonomous adversarial red-team framework for [Agent Shield](https://github.com/Sandeep-int/agent-shield).**
 
-Multi-agent · LLM-generated attacks · Garak-integrated · Self-improving · CI-gated
+Multi-agent · LLM-generated attacks · Garak-integrated · Self-improving · CI-gated ·
 
 <div align="center">
 
