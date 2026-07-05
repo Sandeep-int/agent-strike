@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Sandeep-int/agent-strike/main/assets/banner.png" alt="Agent Strike" width="800"/>
+  **Agent-Strike**
 </p>
 
 ---
